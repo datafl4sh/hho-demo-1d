@@ -88,11 +88,6 @@ solve_diffusion_problem(const run_parameters& rp, const Function& pf,
         arma::Mat<T> A = gr.local_contrib();
         arma::Mat<T> S = stab.local_contrib();
         
-        std::cout << "dump" << std::endl;
-        std::cout << A << std::endl;
-        std::cout << std::endl;
-        std::cout << S << std::endl;
-        
         arma::Mat<T> LC = A + S;
         
         arma::Mat<T> K_TT = LC.submat(0, 0, arma::size(basis_k_size, basis_k_size));
@@ -133,6 +128,9 @@ solve_diffusion_problem(const run_parameters& rp, const Function& pf,
     
     arma::SpMat<T>  sysmat(true, locations, values, dofs_num, dofs_num);
     
+    // CG is definitely not the right solver because of the way the boundary
+    // conditions are imposed. However it appears to work, so we keep it for
+    // now.
     return conjugate_gradient(sysmat, sysrhs, 1e-9, 2*sysmat.n_cols);
 }
 
@@ -181,7 +179,7 @@ postprocess(const run_parameters& rp, const arma::Col<T>& x,
         sol.head(basis_k_size) = solT;
         sol.tail(2) = solF;
         
-        std::cout << (gr.as_matrix() * sol).t() << std::endl;
+        //std::cout << (gr.as_matrix() * sol).t() << std::endl;
         
         /* Compute some test points inside the element */
         auto tps = make_test_points(elem, rp.eval_per_elem);
