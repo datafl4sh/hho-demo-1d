@@ -16,29 +16,36 @@ Building the code
 
 To build the code you must have installed Armadillo, Boost and Gnuplot.
 
-On Debian-derived Linux systems:
+__On Debian-derived Linux systems:__
 
     apt-get install libarmadillo-dev libboost-all-dev gnuplot
     
-On RedHat-derived Linux systems:
+__On RedHat-derived Linux systems:__
 
 	yum install armadillo-devel boost-devel gnuplot
 
-On Mac OS X you must have Homebrew installed, then
+__On Mac OS X__
+
+Here you have two ways to install the code, and both require homebrew. The first:
 
     brew install armadillo boost gnuplot
     
 Then
 	
-	c++ -O3 -std=c++11 -o hho hho-1d-demo.cpp -larmadillo \
-           -lboost_system -lboost_iostreams
+	c++ -O3 -std=c++11 -o hho-demo-1d hho-1d-demo.cpp \
+	        -larmadillo -lboost_system -lboost_iostreams
+           
+Otherwise, the second way:
+
+    brew tap datafl4sh/code
+    brew install hho-demo-1d
       
 Running the code
 ----------------
 
 The program supports a number of command line switches. The general syntax is
 
-    ./hho [options] <example>
+    ./hho-demo-1d [options] <example>
     
 The options are:
 
