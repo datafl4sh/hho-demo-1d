@@ -13,3 +13,5 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 add_executable(hho-demo-1d hho-demo-1d.cpp)
 target_link_libraries(hho-demo-1d armadillo boost_iostreams boost_system)
+
+install(TARGETS hho-demo-1d RUNTIME DESTINATION bin)
