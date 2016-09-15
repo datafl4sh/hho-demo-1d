@@ -26,20 +26,46 @@ __On RedHat-derived Linux systems:__
 
 __On Mac OS X__
 
-Here you have two ways to install the code, and both require homebrew. The first:
-
     brew install armadillo boost gnuplot
     
-Then
+Then, no matter on which system you are
 	
 	c++ -O3 -std=c++11 -o hho-demo-1d hho-1d-demo.cpp \
 	        -larmadillo -lboost_system -lboost_iostreams
            
-Otherwise, the second way:
+On Mac OS X you have also a second route:
 
     brew tap datafl4sh/code
     brew install hho-demo-1d
-      
+    
+__On Windows__
+
+It is possible to compile and run this code also on Windows by using [CygWin](https://cygwin.com). Using the CygWin package manager install the following packages:
+ 
+    g++ make cmake git wget blas lapack libboost-devel gnuplot xorg-server xinit
+    
+Open the CygWin terminal and
+
+    git clone https://github.com/datafl4sh/hho-demo-1d.git
+    wget http://sourceforge.net/projects/arma/files/armadillo-7.400.2.tar.xz
+    tar -Jxvf armadillo-7.400.2.tar.xz
+    
+Finally
+    
+    cd hho-demo-1d
+    g++ -O3 -std=gnu++11 -o hho-demo-1d hho-1d-demo.cpp \
+	        -lblas -llapack -lboost_system -lboost_iostreams
+	        
+To run, first you have to start (only one time) the CygWin X Windows System by
+
+    startxwin&
+    
+Then you can launch the code with (see below)
+    
+    DISPLAY=:0 ./hho-demo-1d.exe [options] <example>
+    
+Many thanks to [Omar](http://blog.solidspace.org) for providing the Windows machine where I tested this procedure!
+
 Running the code
 ----------------
 
