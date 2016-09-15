@@ -53,7 +53,8 @@ Open the CygWin terminal and
 Finally
     
     cd hho-demo-1d
-    g++ -O3 -std=gnu++11 -o hho-demo-1d hho-1d-demo.cpp \
+    g++ -O3 -std=gnu++11 -I../armadillo-7.400.2/include \
+            -o hho-demo-1d hho-1d-demo.cpp \
 	        -lblas -llapack -lboost_system -lboost_iostreams
 	        
 To run, first you have to start (only one time) the CygWin X Windows System by
